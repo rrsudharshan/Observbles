@@ -37,10 +37,11 @@ class Server {
     }
 
     configureRoutes(){
-      this.app.post('/api/image', this.upload.single('image'), (req, res) => {
-          console.log(req.file);
-          res.json({image: 'http://localhost:1337/'+req.file.path})
-      });
+      // Ignore this
+      // this.app.post('/api/image', this.upload.single('image'), (req, res) => {
+      //     console.log(req.file);
+      //     res.json({image: 'http://localhost:1337/'+req.file.path})
+      // });
         this.app.get('/api/comments', (req, res) => {
             this.fs.readFile(this.dataFile, (err, data) => {
                 if (err) {
