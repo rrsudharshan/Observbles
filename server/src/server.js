@@ -2,21 +2,20 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import fs from 'fs';
 import path from 'path';
-import multer from 'multer';
+// import multer from 'multer';
 
 
 class Server {
     constructor(){
         this.app = express();
         this.fs = fs;
-        this.upload = multer({dest: 'uploads/'});
+        // this.upload = multer({dest: 'uploads/'});
         this.dataFile  = path.join(__dirname, '../data.json');
     }
 
     configureApp() {
         this.app.set('port', (process.env.PORT || 3000));
-
-        this.app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+        // this.app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({extended: true}));
     }
@@ -89,8 +88,6 @@ class Server {
                         return comment;
                     }
                 });
-
-
                 findCommentById[0].text = req.body.text;
                 findCommentById[0].author = req.body.author;
 
@@ -102,7 +99,6 @@ class Server {
                     }
                     res.json(comments);
                 });
-
             });
         });
         this.app.delete('/api/comments/:id', (req, res) => {
@@ -120,8 +116,6 @@ class Server {
                     }
                 });
 
-
-
                 if(idIndex >= 0){
                     comments.splice(idIndex, 1);
                 }
@@ -133,7 +127,6 @@ class Server {
                     }
                     res.json(comments);
                 });
-
             });
         });
     }
