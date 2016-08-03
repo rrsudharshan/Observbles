@@ -2,19 +2,21 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import fs from 'fs';
 import path from 'path';
+import multer from 'multer';
 
 
 class Server {
     constructor(){
         this.app = express();
         this.fs = fs;
+        this.upload = multer({dest: 'uploads/'});
         this.dataFile  = path.join(__dirname, '../data.json');
     }
 
     configureApp() {
         this.app.set('port', (process.env.PORT || 3000));
 
-        this.app.use('/', express.static(path.join(__dirname, 'public')));
+        this.app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({extended: true}));
     }
@@ -35,6 +37,10 @@ class Server {
     }
 
     configureRoutes(){
+      this.app.post('/api/image', this.upload.single('image'), (req, res) => {
+          console.log(req.file);
+          res.json({image: 'http://localhost:1337/'+req.file.path})
+      });
         this.app.get('/api/comments', (req, res) => {
             this.fs.readFile(this.dataFile, (err, data) => {
                 if (err) {
@@ -83,7 +89,7 @@ class Server {
                     }
                 });
 
-                
+
                 findCommentById[0].text = req.body.text;
                 findCommentById[0].author = req.body.author;
 
@@ -95,7 +101,7 @@ class Server {
                     }
                     res.json(comments);
                 });
-                
+
             });
         });
         this.app.delete('/api/comments/:id', (req, res) => {
@@ -113,7 +119,7 @@ class Server {
                     }
                 });
 
-                
+
 
                 if(idIndex >= 0){
                     comments.splice(idIndex, 1);
@@ -126,7 +132,7 @@ class Server {
                     }
                     res.json(comments);
                 });
-                
+
             });
         });
     }

@@ -1,4 +1,4 @@
-/* * * ./app/comments/components/comment.service.ts * * */
+/* * * ./app/comments/services/comment.service.ts * * */
 // Imports
 import { Injectable }     from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
