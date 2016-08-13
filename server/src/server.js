@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import fs from 'fs';
 import path from 'path';
+import twilio from 'twilio';
 // import multer from 'multer';
 
 
@@ -9,6 +10,8 @@ class Server {
     constructor(){
         this.app = express();
         this.fs = fs;
+        this.twilioClient = twilio(TWILIO_SID, TWILIO_TOKEN);
+
         // this.upload = multer({dest: 'uploads/'});
         this.dataFile  = path.join(__dirname, '../data.json');
     }
@@ -65,11 +68,25 @@ class Server {
                 };
 
                 comments.push(newComment);
-                this.fs.writeFile(this.dataFile, JSON.stringify(comments, null, 4), function(err) {
+                this.fs.writeFile(this.dataFile, JSON.stringify(comments, null, 4), (err) => {
                     if (err) {
                         console.error(err);
                         process.exit(1);
                     }
+
+                    this.twilioClient.messages.create({
+                      body: `Message from ${req.body.author}. Content: ${req.body.text}`,
+                      to: process.env.TWILIO_TO,
+                      from: process.env.TWILIO_FROM
+                      // mediaUrl: 'http://www.yourserver.com/someimage.png'
+                    }, function(err, data) {
+                      if (err) {
+                        console.error('Could not notify administrator');
+                        console.error(err);
+                      } else {
+                        console.log('Administrator notified');
+                      }
+                    });
                     res.json(comments);
                 });
             });
