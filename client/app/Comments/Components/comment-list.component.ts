@@ -3,7 +3,7 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { CommentBoxComponent } from './comment-box.component';
+
 import { Comment } from '../model/comment';
 import {CommentService} from '../services/comment.service';
 import { EmitterService } from '../../emitter.service';
@@ -14,8 +14,7 @@ import { EmitterService } from '../../emitter.service';
     template: `
         <comment-box [editId]="editId" [listId]="listId" *ngFor="let comment of comments" [comment]="comment"></comment-box>
     `,
-    directives: [CommentBoxComponent],
-    providers: [CommentService]
+    
 })
 // Component class
 export class CommentListComponent implements OnInit, OnChanges{

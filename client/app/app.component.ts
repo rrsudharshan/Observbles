@@ -1,7 +1,7 @@
 /* * * ./app/comments/app.component.ts * * */
 // Imports
 import { Component } from '@angular/core';
-import { CommentComponent } from './comments/components/index'
+
 
 
 @Component({
@@ -11,6 +11,5 @@ import { CommentComponent } from './comments/components/index'
         
         <comment-widget></comment-widget>
         `,
-        directives:[CommentComponent]
 })
 export class AppComponent { }

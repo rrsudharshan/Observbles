@@ -22,10 +22,6 @@ var _path = require('path');
 
 var _path2 = _interopRequireDefault(_path);
 
-var _twilio = require('twilio');
-
-var _twilio2 = _interopRequireDefault(_twilio);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -38,7 +34,6 @@ var Server = function () {
 
         this.app = (0, _express2.default)();
         this.fs = _fs2.default;
-        this.twilioClient = (0, _twilio2.default)('ACa73a472c4b49540b238ebaf84f11a09f', '12a22374892a9f6b8ab9bb45b02b80ac');
 
         // this.upload = multer({dest: 'uploads/'});
         this.dataFile = _path2.default.join(__dirname, '../data.json');
@@ -110,8 +105,8 @@ var Server = function () {
 
                         _this.twilioClient.messages.create({
                             body: 'Message from ' + req.body.author + '. Content: ' + req.body.text,
-                            to: '+2347011326196',
-                            from: '+15005550006'
+                            to: process.env.TWILIO_TO,
+                            from: process.env.TWILIO_FROM
                             // mediaUrl: 'http://www.yourserver.com/someimage.png'
                         }, function (err, data) {
                             if (err) {

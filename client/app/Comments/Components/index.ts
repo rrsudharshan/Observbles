@@ -1,8 +1,6 @@
 /* * * ./app/comments/components/index.ts * * */
 // Imports
 import { Component} from '@angular/core';
-import { CommentFormComponent } from './comment-form.component'
-import { CommentListComponent } from './comment-list.component'
 import {EmitterService} from '../../emitter.service';
 
 @Component({
@@ -13,8 +11,6 @@ import {EmitterService} from '../../emitter.service';
             <comment-list [listId]="listId" [editId]="editId"></comment-list>
         </div>
     `,
-    directives: [CommentListComponent, CommentFormComponent],
-    providers: [EmitterService]
 })
 export class CommentComponent { 
     // Event tracking properties

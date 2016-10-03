@@ -2,7 +2,6 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import fs from 'fs';
 import path from 'path';
-import twilio from 'twilio';
 // import multer from 'multer';
 
 
@@ -10,7 +9,7 @@ class Server {
     constructor(){
         this.app = express();
         this.fs = fs;
-        this.twilioClient = twilio(TWILIO_SID, TWILIO_TOKEN);
+        
 
         // this.upload = multer({dest: 'uploads/'});
         this.dataFile  = path.join(__dirname, '../data.json');

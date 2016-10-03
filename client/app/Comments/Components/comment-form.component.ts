@@ -1,7 +1,7 @@
 /* * * ./app/comments/components/comment-form.component.ts * * */
 // Imports
 import { Component, EventEmitter, Input, OnChanges } from '@angular/core';
-import { NgForm }    from '@angular/common';
+import { NgForm }    from '@angular/forms';
 import {Observable} from 'rxjs/Rx';
 
 import { CommentBoxComponent } from './comment-box.component'
