@@ -5,9 +5,9 @@ import { NgForm }    from '@angular/forms';
 import {Observable} from 'rxjs/Rx';
 
 import { CommentBoxComponent } from './comment-box.component'
-import { CommentService } from '../services/comment.service';
+import { CommentService } from '../Services/comment.service';
 import { EmitterService } from '../../emitter.service';
-import { Comment } from '../model/comment'
+import { Comment } from '../Model/comment'
 
 // Component decorator
 @Component({

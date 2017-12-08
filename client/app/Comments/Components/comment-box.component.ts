@@ -1,9 +1,9 @@
 /* * * ./app/comments/components/comment-box.component.ts * * */
 // Imports
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Comment } from '../model/comment'
+import { Comment } from '../Model/comment'
 import { EmitterService } from '../../emitter.service';
-import { CommentService } from '../services/comment.service';
+import { CommentService } from '../Services/comment.service';
 
 // Component decorator
 @Component({
@@ -23,16 +23,16 @@ import { CommentService } from '../services/comment.service';
     // No providers here because they are passed down from the parent component
 })
 // Component class
-export class CommentBoxComponent { 
+export class CommentBoxComponent {
     // Constructor
-     constructor(
+    constructor(
         private commentService: CommentService
-        ){}
+    ){}
     // Define input properties
     @Input() comment: Comment;
     @Input() listId: string;
     @Input() editId:string;
-
+    
     editComment(){
         // Emit edit event
         EmitterService.get(this.editId).emit(this.comment);

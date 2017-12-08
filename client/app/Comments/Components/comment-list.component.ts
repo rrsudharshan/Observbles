@@ -4,8 +4,8 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 
-import { Comment } from '../model/comment';
-import {CommentService} from '../services/comment.service';
+import { Comment } from '../Model/comment';
+import {CommentService} from '../Services/comment.service';
 import { EmitterService } from '../../emitter.service';
 
 // Component decorator
@@ -32,7 +32,7 @@ export class CommentListComponent implements OnInit, OnChanges{
         // Get all comments
          this.commentService.getComments()
                            .subscribe(
-                               comments => this.comments = comments, //Bind to view
+                                comments => this.comments = comments, //Bind to view
                                 err => {
                                     // Log errors if any
                                     console.log(err);
