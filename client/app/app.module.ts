@@ -1,9 +1,8 @@
 import { NgModule }       from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
 import { FormsModule }    from '@angular/forms';
-import { HttpModule, JsonpModule } from '@angular/http';
-
-import { CommentModule } from './comments/comments.module';
+import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
+import { CommentModule } from './Comments/comments.module';
 
 import { AppComponent }         from './app.component';
 import { EmitterService }          from './emitter.service';
@@ -13,10 +12,9 @@ import { EmitterService }          from './emitter.service';
   imports: [
     BrowserModule,
     FormsModule,
-     HttpModule,
-    JsonpModule,
+    HttpClientModule,
+    HttpClientJsonpModule,
     CommentModule
-    
   ],
   declarations: [
     AppComponent,
