@@ -5,6 +5,9 @@ import path from 'path';
 // import multer from 'multer';
 
 
+
+
+
 class Server {
     constructor(){
         this.app = express();
@@ -22,6 +25,8 @@ class Server {
         this.app.use(bodyParser.urlencoded({extended: true}));
     }
 
+
+    
     configureCORS(){
         // Additional middleware which will set headers that we need on each request.
         this.app.use((req, res, next) => {
