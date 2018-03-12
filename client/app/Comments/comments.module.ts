@@ -12,6 +12,8 @@ import { CommentComponent } from './Components/index';
 import { CommentService } from './Services/comment.service';
 
 
+
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -36,7 +38,7 @@ import { CommentService } from './Services/comment.service';
     CommentListComponent,
     CommentComponent
   ]
-  
+
 })
 export class CommentModule {
 }

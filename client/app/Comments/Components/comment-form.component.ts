@@ -30,7 +30,7 @@ import { Comment } from '../Model/comment'
     providers: [CommentService]
 })
 // Component class
-export class CommentFormComponent implements OnChanges { 
+export class CommentFormComponent implements OnChanges {
     // Constructor with injected service
     constructor(
         private commentService: CommentService
@@ -38,11 +38,11 @@ export class CommentFormComponent implements OnChanges {
     // Local properties
     private model = new Comment(new Date(), '', '');
     private editing = false;
-    
+
     // Input properties
      @Input() editId: string;
      @Input() listId: string;
-     
+
 
     submitComment(){
         // Variable to hold a reference of addComment/updateComment
@@ -56,6 +56,11 @@ export class CommentFormComponent implements OnChanges {
              commentOperation = this.commentService.updateComment(this.model)
         }
 
+
+
+
+
+
         // Subscribe to observable
         commentOperation.subscribe(
                                 comments => {
@@ -65,7 +70,7 @@ export class CommentFormComponent implements OnChanges {
                                     this.model = new Comment(new Date(), '', '');
                                     // Switch editing status
                                     if(this.editing) this.editing = !this.editing;
-                                }, 
+                                },
                                 err => {
                                     // Log errors if any
                                     console.log(err);

@@ -28,6 +28,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 // import multer from 'multer';
 
+
 var Server = function () {
     function Server() {
         _classCallCheck(this, Server);
@@ -103,19 +104,6 @@ var Server = function () {
                             process.exit(1);
                         }
 
-                        _this.twilioClient.messages.create({
-                            body: 'Message from ' + req.body.author + '. Content: ' + req.body.text,
-                            to: process.env.TWILIO_TO,
-                            from: process.env.TWILIO_FROM
-                            // mediaUrl: 'http://www.yourserver.com/someimage.png'
-                        }, function (err, data) {
-                            if (err) {
-                                console.error('Could not notify administrator');
-                                console.error(err);
-                            } else {
-                                console.log('Administrator notified');
-                            }
-                        });
                         res.json(comments);
                     });
                 });

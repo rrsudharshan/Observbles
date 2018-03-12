@@ -9,6 +9,11 @@ import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
+
+
+
+
+
 @Injectable()
 export class CommentService {
     // private instance variable to hold base url
@@ -27,6 +32,10 @@ export class CommentService {
                          .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
      }
 
+
+
+
+
      // Add a new comment
     addComment (body: Object): Observable<Comment[]> {
         let bodyString = JSON.stringify(body); // Stringify payload
@@ -41,11 +50,13 @@ export class CommentService {
     updateComment (body: Object): Observable<Comment[]> {
         let bodyString = JSON.stringify(body); // Stringify payload
         return this.http.put(`${this.commentsUrl}/${body['id']}`, bodyString ,{
-            headers: new HttpHeaders().set('Content-Type', 'application/json'), // adding headers to request            
+            headers: new HttpHeaders().set('Content-Type', 'application/json'), // adding headers to request
         }) // ...using put request
                          .map(res => res ) // ...now we return data
                          .catch((error:any) => Observable.throw(error.json().error || 'Server error')); // ...errors if any
     }
+
+
     // Delete a comment
     removeComment (id:string): Observable<Comment[]> {
         return this.http.delete(`${this.commentsUrl}/${id}`) // ...using put request

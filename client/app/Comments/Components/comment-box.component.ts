@@ -13,6 +13,8 @@ import { CommentService } from '../Services/comment.service';
             <div class="panel-heading">{{comment.author}}</div>
             <div class="panel-body">
                 {{comment.text}}
+                
+                
             </div>
             <div class="panel-footer">
                 <button class="btn btn-info" (click)="editComment()"><span class="glyphicon glyphicon-edit"></span></button>
@@ -20,7 +22,7 @@ import { CommentService } from '../Services/comment.service';
             </div>
         </div>
     `
-    // No providers here because they are passed down from the parent component
+
 })
 // Component class
 export class CommentBoxComponent {
@@ -32,7 +34,7 @@ export class CommentBoxComponent {
     @Input() comment: Comment;
     @Input() listId: string;
     @Input() editId:string;
-    
+
     editComment(){
         // Emit edit event
         EmitterService.get(this.editId).emit(this.comment);
@@ -44,7 +46,7 @@ export class CommentBoxComponent {
                                 comments => {
                                     // Emit list event
                                     EmitterService.get(this.listId).emit(comments);
-                                }, 
+                                },
                                 err => {
                                     // Log errors if any
                                     console.log(err);
